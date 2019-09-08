@@ -4,6 +4,9 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        manager: [npm, yarn]
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
@@ -14,7 +17,7 @@ jobs:
           expo-version: 3
           expo-username: bycedric
           expo-password: ${{ secrets.password }}
-          expo-manager: yarn
+          expo-manager: ${{ matrix.manager }}
       - run: npm ci
       - run: expo doctor
       - run: expo diagnostics
