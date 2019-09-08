@@ -13,7 +13,7 @@ jobs:
         with:
           expo-username: bycedric
           expo-password: ${{ secrets.password }}
-          expo-manager: yarn
+          expo-manager: npm
       - run: npm ci
       - run: expo doctor
       - run: expo diagnostics
