@@ -3,17 +3,23 @@ name: Expo CI
 on: [push]
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macOS-latest
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
-          node-version: '12'
+          node-version: 12
       - uses: bycedric/expo-github-action-concept@master
         with:
           expo-version: 3.0.10
           expo-username: bycedric
-          expo-password: ${secrets.password}
+          expo-password: ${{ secrets.password }}
       - run: npm ci
       - run: expo doctor
       - run: expo diagnostics
