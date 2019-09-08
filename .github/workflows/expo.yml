@@ -14,6 +14,7 @@ jobs:
           expo-version: 3
           expo-username: bycedric
           expo-password: ${{ secrets.password }}
+          expo-manager: yarn
       - run: npm ci
       - run: expo doctor
       - run: expo diagnostics
