@@ -17,3 +17,4 @@ jobs:
       - run: npm ci
       - run: expo doctor
       - run: expo diagnostics
+      - run: echo 'failing so the job can be restarted easily' && exit 1
