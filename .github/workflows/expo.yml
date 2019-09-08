@@ -23,3 +23,5 @@ jobs:
       - run: npm ci
       - run: expo doctor
       - run: expo diagnostics
+      - run: expo optimize
+      - run: expo build:web
