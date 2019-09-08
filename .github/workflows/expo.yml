@@ -13,9 +13,7 @@ jobs:
         with:
           expo-version: 3.0.10
       - run: npm ci
-      - run: expo login --username="bycedric" --non-interactive
-        env:
-          EXPO_CLI_PASSWORD: ${{ secrets.password }}
+      - run: expo login --username="bycedric" --password="${{ secrets.password }}"
       - run: expo whoami
       - run: expo doctor
       - run: expo diagnostics
