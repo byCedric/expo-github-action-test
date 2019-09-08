@@ -6,7 +6,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node: [8, 10, 12]
+        node: [10, 12]
+        packager: [npm, yarn]
         os:
           - ubuntu-latest
           - macos-latest
@@ -20,6 +21,7 @@ jobs:
         with:
           expo-username: bycedric
           expo-password: ${{ secrets.password }}
+          expo-packager: ${{ matrix.packager }}
       - run: npm ci
       - run: expo doctor
       - run: expo diagnostics
