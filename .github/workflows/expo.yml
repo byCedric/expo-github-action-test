@@ -11,11 +11,10 @@ jobs:
           node-version: 12
       - uses: bycedric/expo-github-action-concept@master
         with:
-          expo-version: 3.0.10
+          expo-version: 3
           expo-username: bycedric
           expo-password: ${{ secrets.password }}
       - run: expo whoami
       - run: npm ci
       - run: expo doctor
       - run: expo diagnostics
-      - run: echo 'failing so the job can be restarted easily' && exit 1
