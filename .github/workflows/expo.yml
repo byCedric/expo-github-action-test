@@ -18,3 +18,4 @@ jobs:
       - run: npm ci
       - run: expo doctor
       - run: expo diagnostics
+      - run: expo publish
