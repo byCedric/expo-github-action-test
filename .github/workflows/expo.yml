@@ -1,13 +1,27 @@
 ---
-name: Commitlint CI
+name: Expo CI
 on: [push]
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node: [10, 12]
+        packager: [npm, yarn]
+        os:
+          - ubuntu-latest
+          - macos-latest
+          - windows-latest
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
-          node-version: 12.x
+          node-version: ${{ matrix.node }}
+      - uses: bycedric/expo-github-action@refactor/use-ncc
+        with:
+          expo-username: bycedric
+          expo-password: ${{ secrets.password }}
+          expo-packager: ${{ matrix.packager }}
       - run: npm ci
-      - uses: bycedric/commitlint-action@master
+      - run: expo doctor
+      - run: expo diagnostics
