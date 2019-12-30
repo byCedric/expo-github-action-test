@@ -23,7 +23,7 @@ jobs:
           expo-username: bycedric
           expo-password: ${{ secrets.password }}
           expo-packager: ${{ matrix.packager }}
-          expo-remote-cache: true
+          expo-cache: true
       - run: npm ci
       - run: expo doctor
       - run: expo diagnostics
