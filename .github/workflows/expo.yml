@@ -8,7 +8,6 @@ jobs:
       matrix:
         node: [10, 12]
         packager: [npm, yarn]
-        expo: [3.10.x, 3.11.x]
         os:
           - ubuntu-latest
           - macos-latest
@@ -18,12 +17,13 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node }}
-      - uses: expo/expo-github-action@refactor/use-ncc
+      - uses: bycedric/expo-github-action@feat/actions-cache
         with:
-          expo-version: ${{ matrix.expo }}
+          expo-version: 3.x
           expo-username: bycedric
           expo-password: ${{ secrets.password }}
           expo-packager: ${{ matrix.packager }}
+          expo-remote-cache: true
       - run: npm ci
       - run: expo doctor
       - run: expo diagnostics
