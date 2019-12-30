@@ -8,6 +8,7 @@ jobs:
       matrix:
         node: [10, 12]
         packager: [npm, yarn]
+        expo: [3.10.x, 3.11.x]
         os:
           - ubuntu-latest
           - macos-latest
@@ -19,6 +20,7 @@ jobs:
           node-version: ${{ matrix.node }}
       - uses: expo/expo-github-action@refactor/use-ncc
         with:
+          expo-version: ${{ matrix.expo }}
           expo-username: bycedric
           expo-password: ${{ secrets.password }}
           expo-packager: ${{ matrix.packager }}
